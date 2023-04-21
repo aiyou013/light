@@ -1,0 +1,95 @@
+以下是一个简单的交通灯代码示例，它使用 HTML、CSS 和 JavaScript 来创建一个基本的交通灯：
+
+html
+Copy code
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>交通灯</title>
+    <style>
+      /* 样式 */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #2d2d2d;
+      }
+
+      .traffic-light {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 80px;
+        height: 200px;
+        background-color: #444;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      .light {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        border: 1px solid #222;
+      }
+
+      .red {
+        background-color: #ff4c4c;
+      }
+
+      .yellow {
+        background-color: #f7b32d;
+      }
+
+      .green {
+        background-color: #53c653;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="traffic-light">
+      <div class="light red"></div>
+      <div class="light yellow"></div>
+      <div class="light green"></div>
+    </div>
+
+    <script>
+      // JavaScript 代码
+      const red = document.querySelector(".red");
+      const yellow = document.querySelector(".yellow");
+      const green = document.querySelector(".green");
+
+      function switchLight() {
+        setTimeout(() => {
+          // 将所有灯都关闭
+          red.style.opacity = "0.2";
+          yellow.style.opacity = "0.2";
+          green.style.opacity = "0.2";
+
+          // 打开红灯
+          red.style.opacity = "1";
+          setTimeout(() => {
+            // 关闭红灯，打开黄灯
+            red.style.opacity = "0.2";
+            yellow.style.opacity = "1";
+            setTimeout(() => {
+              // 关闭黄灯，打开绿灯
+              yellow.style.opacity = "0.2";
+              green.style.opacity = "1";
+              setTimeout(() => {
+                // 关闭绿灯，重新开始循环
+                green.style.opacity = "0.2";
+                switchLight();
+              }, 3000); // 绿灯持续3秒
+            }, 2000); // 黄灯持续2秒
+          }, 5000); // 红灯持续5秒
+        }, 0);
+      }
+
+      switchLight(); // 启动交通灯
+    </script>
+  </body>
+</html>
